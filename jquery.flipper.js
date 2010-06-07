@@ -4,12 +4,13 @@
     var defaults = {
       'perspective': '600',
       'duration': '2s',
-      'axis': 'Y'
+      'axis': 'Y',
+      'turns': 0
     }
 
     var settings = jQuery.extend({}, defaults, options)
-
-    var transformation = 'rotate' + settings.axis + '(180deg)'
+    var rotation = (180 + (360 * settings.turns))
+    var transformation = 'rotate' + settings.axis + '(' + rotation + 'deg)'
 
     var $container = $(this).parent('#container')
     var $flipper = $(this)
