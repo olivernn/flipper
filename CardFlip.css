@@ -1,0 +1,59 @@
+body 
+{
+	margin: 0px;
+}
+
+
+/* Styles the "Card Flip" page and creates a placeholder for the card */
+#container
+{
+	/* Set these dimensions so the card can be properly displayed in Safari on iPhone */
+	height: 356px;
+	width: 320px;
+	background-color: rgba(56,108,179, 0.5);
+}
+
+.card 
+{
+	position: absolute;
+	height: 300px;
+	width: 200px;
+	left: 60px;
+	top: 28px;
+
+}
+
+/* Styles the card and hides its "back side" when the card is flipped */
+.face 
+{
+	position: absolute;
+	height: 300px;
+	width: 200px;
+  -webkit-border-radius: 10px;
+  -webkit-box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+/* Styles the suit characters */
+.face > p 
+{
+	margin-top: 36px;
+	margin-bottom: 0;
+	text-align: center;
+	font-size: 92px;
+}
+
+
+/* Styles the front of the card */
+.front 
+{
+	color: rgb(78,150,249);
+	background-color: rgb(34,65,108);
+}
+
+
+/* Styles the back of the card */
+.back 
+{
+	color: rgb(34,65,108);
+	background-color: rgba(78,150,249,0.5);
+}

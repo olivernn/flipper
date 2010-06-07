@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Strict//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+    <title>Card Flip</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" href="CardFlip.css" media="screen"/>
+
+    <script src="jquery.flipper.js" type="text/javascript" charset="utf-8"></script>
+
+    <script type="text/javascript" charset="utf-8">
+      $(document).ready(function () {
+        $('.card').flipper();
+      })
+    </script>
+</head>
+<body>
+  <div id="container">
+    <div id="card" class="card">
+      <div id="front" class="front face">
+        <p>♠ ♦<br> ♣ ♥</p>
+      </div>
+      <div id="back" class="back face">
+        <p>♦ ♠<br> ♥ ♣</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
