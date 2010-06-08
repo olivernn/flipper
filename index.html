@@ -1,30 +1,193 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Strict//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html lang="en">
+<!DOCTYPE html>
+<html lang='en'>
 <head>
-    <title>Card Flip</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-    <link rel="stylesheet" href="CardFlip.css" media="screen"/>
-
-    <script src="jquery.flipper.js" type="text/javascript" charset="utf-8"></script>
-
-    <script type="text/javascript" charset="utf-8">
-      $(document).ready(function () {
-        $('.card').flipper();
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link href="docs/styles.css" rel="stylesheet">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+  <script src="jquery.flipper.js"></script>
+  <script>
+    jQuery(document).ready(function () {
+      jQuery('#ex1').flipper();
+      jQuery('#ex2').flipper({
+        'turns': 2
       })
-    </script>
+      jQuery('#ex3').flipper({
+        'callback': function () {
+          alert("flippin' heck!")
+        }
+      })
+    });
+  </script>
+  <script src="docs/code_highlighter.js"></script>
+  <script src="docs/syntax.js"></script>
 </head>
 <body>
-  <a href="#" id='clicker'>Click to Flip</a>
-  <div id="container">
-    <div id="card" class="card">
-      <div id="front" class="front face">
-        <p>♠ ♦<br> ♣ ♥</p>
+  <div class='wrap'>
+    <h1>Flipper Examples</h1>
+
+    <div class='example'>
+      <h2>Default Flip</h2>
+      <div class='container'>
+        <div class='flipper' id='ex1'>
+          <div class='front'>
+            <div class='top'>A</div>
+            <div class='middle'>♠</div>
+            <div class='bottom'>A</div>
+          </div>
+          <div class='back'></div>
+        </div>
       </div>
-      <div id="back" class="back face">
-        <p>♦ ♠<br> ♥ ♣</p>
+
+      <div class='code'>
+        JavaScript
+        <pre><code class='javascript'>
+          $('.flipper').flipper()
+        </code></pre>
       </div>
     </div>
+  
+    <div class='example'>
+      <h2>Multiple Flips</h2>
+      <div class='container'>
+        <div class='flipper' id='ex2'>
+          <div class='front'>
+            <div class='top'>A</div>
+            <div class='middle'>♠</div>
+            <div class='bottom'>A</div>
+          </div>
+          <div class='back'></div>
+        </div>
+      </div>
+
+      <div class='code'>
+        Javascript
+        <pre><code class='javascript'>
+          $('.flipper').flipper({
+            'turns': 2
+          })
+        </code></pre>
+      </div>
+    </div>
+
+    <div class='example'>
+      <h2>Callback after Flip</h2>
+      <div class='container'>
+        <div class='flipper' id='ex3'>
+          <div class='front'>
+            <div class='top'>A</div>
+            <div class='middle'>♠</div>
+            <div class='bottom'>A</div>
+          </div>
+          <div class='back'></div>
+        </div>
+      </div>
+
+      <div class='code'>
+        Javascript
+        <pre><code class='javascript'>
+          $('.flipper').flipper({
+            'callback': function () {
+              alert("flippin' heck!")
+            }
+          })
+        </code></pre>
+      </div>
+    </div>
+
+    <h1>Usage</h1>
+
+    <p>You must have the following markup for flipper to work.  The two divs with class front and back are what will display, front will be displayed first, back will only be displayed after the flipping has occurred.</p>
+
+    <p>The flipper div holds both the two sides that will be flipped and the container div holds the whole flipping markup.  The flipper div must be the exact same size as both the front and back div, which also must be the same size.  All three of which need to be position absolute.</p>
+
+    <div class='code'>
+      HTML
+      <pre><code class='html'>
+        &lt;div class=&#x27;container&#x27;&gt;
+          &lt;div class=&#x27;flipper&#x27; id=&#x27;ex2&#x27;&gt;
+            &lt;div class=&#x27;front&#x27;&gt;&lt;/div&gt;
+            &lt;div class=&#x27;back&#x27;&gt;&lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      </code></pre>
+    </div>
+
+    <div class='code'>
+      CSS
+      <pre><code class='css'>
+        #container {
+          height: 356px;
+          width: 320px;
+          background-color: rgba(56,108,179, 0.5);
+        }
+
+        .flipper {
+          position: absolute;
+          height: 300px;
+          width: 200px;
+          left: 60px;
+          top: 28px;
+        }
+
+        .front {
+          position: absolute;
+          height: 300px;
+          width: 200px;
+        }
+
+        .back {
+          position: absolute;
+          height: 300px;
+          width: 200px;
+        }
+      </code></pre>
+    </div>
+
+    <h1>Support</h1>
+
+    <p>Currently 3d rotations are only supported in Safari 4+ and Webkit nightly.  These demos will still work, although not in 3d, on Chrome.</p>
+
+    <h1>Options</h1>
+
+    <p>The following options can be set to customise flipper</p>
+
+    <table>
+      <tr>
+        <th>Option</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>container</td>
+        <td>'.container'</td>
+        <td>The containing div that holds the flipper</td>
+      </tr>
+      <tr>
+        <td>perspective</td>
+        <td>800</td>
+        <td>How far away along the z axis the object to flip appears</td>
+      </tr>
+      <tr>
+        <td>duration</td>
+        <td>2</td>
+        <td>How long the flip effect lasts for in seconds</td>
+      </tr>
+      <tr>
+        <td>axis</td>
+        <td>Y</td>
+        <td>The axis for the object is flipped on</td>
+      </tr>
+      <tr>
+        <td>turns</td>
+        <td>0</td>
+        <td>The number of full rotations before the other side of the flipped object is shown</td>
+      </tr>
+      <tr>
+        <td>callback</td>
+        <td>none</td>
+        <td>A callback that will be called when the flipping has stopped</td>
+      </tr>
+    </table>
   </div>
 </body>
 </html>

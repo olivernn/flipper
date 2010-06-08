@@ -1,9 +1,10 @@
 (function($){
-  $.fn.flipper = function(options){
+  jQuery.fn.flipper = function(options){
 
     var defaults = {
-      'perspective': '600',
-      'duration': '2s',
+      'container': '.container',
+      'perspective': '800',
+      'duration': '2',
       'axis': 'Y',
       'turns': 0,
       'callback': jQuery.noop
@@ -12,8 +13,9 @@
     var settings = jQuery.extend({}, defaults, options);
     var rotation = (180 + (360 * settings.turns));
     var transformation = 'rotate' + settings.axis + '(' + rotation + 'deg)';
+    var duration = settings.duration + 's'
 
-    var $container = jQuery(this).parent('#container');
+    var $container = jQuery(this).parent(settings.container);
     var $flipper = jQuery(this);
     var $front = jQuery(this).find('.front');
     var $back = jQuery(this).find('.back');
@@ -28,7 +30,7 @@
     $flipper.css({
       '-webkit-transform-style': 'preserve-3d',
       '-webkit-transition-property': '-webkit-transform',
-      '-webkit-transition-duration': settings.duration
+      '-webkit-transition-duration': duration
     });
 
     document
