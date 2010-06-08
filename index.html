@@ -10,11 +10,14 @@
 
     <script type="text/javascript" charset="utf-8">
       $(document).ready(function () {
-        $('.card').flipper();
+        $('.card').flipper({
+          turns: 2
+        });
       })
     </script>
 </head>
 <body>
+  <a href="#" id='clicker'>Click to Flip</a>
   <div id="container">
     <div id="card" class="card">
       <div id="front" class="front face">

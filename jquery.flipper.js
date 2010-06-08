@@ -12,10 +12,13 @@
     var rotation = (180 + (360 * settings.turns))
     var transformation = 'rotate' + settings.axis + '(' + rotation + 'deg)'
 
-    var $container = $(this).parent('#container')
-    var $flipper = $(this)
-    var $front = $(this).find('.front')
-    var $back = $(this).find('.back')
+    var $container = jQuery(this).parent('#container')
+    var $flipper = jQuery(this)
+    var $front = jQuery(this).find('.front')
+    var $back = jQuery(this).find('.back')
+    var $target
+
+    settings.target ? $target = jQuery(settings.target) : $target = $flipper
 
     $container.css({
       '-webkit-perspective': settings.perspective
@@ -25,14 +28,18 @@
       '-webkit-transform-style': 'preserve-3d',
       '-webkit-transition-property': '-webkit-transform',
       '-webkit-transition-duration': settings.duration
-    }).toggle(function () {
-      $(this).css({
+    })
+
+    $target.toggle(function () {
+      $flipper.css({
         '-webkit-transform': transformation
       })
+      return false;
     }, function () {
-      $(this).css({
+      $flipper.css({
         '-webkit-transform': ''
       })
+      return false;
     })
 
     $front.css({
