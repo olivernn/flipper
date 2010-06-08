@@ -31,17 +31,24 @@
       '-webkit-transition-duration': settings.duration
     });
 
-    document.getElementById($flipper.attr('id')).addEventListener('webkitTransitionEnd', settings.callback, false );
+    document
+      .getElementById($flipper.attr('id'))
+      .addEventListener('webkitTransitionEnd', settings.callback, false );
+
+    $front.addClass('on-top');
+    $back.addClass('on-bottom');
 
     $target.toggle(function () {
       $flipper.css({
         '-webkit-transform': transformation
       });
+      toggleTopBottomClass();
       return false;
     }, function () {
       $flipper.css({
         '-webkit-transform': ''
       });
+      toggleTopBottomClass();
       return false;
     });
 
@@ -55,6 +62,11 @@
       '-webkit-backface-visibility': 'hidden',
       '-webkit-transform': transformation
     });
+
+    function toggleTopBottomClass () {
+      $front.toggleClass('on-top on-bottom');
+      $back.toggleClass('on-top on-bottom');
+    };
 
     return this;
   };
