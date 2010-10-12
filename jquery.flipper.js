@@ -33,26 +33,23 @@
       '-webkit-transition-duration': duration
     });
 
-    document
-      .getElementById($flipper.attr('id'))
-      .addEventListener('webkitTransitionEnd', settings.callback, false );
+    $flipper.get(0).addEventListener('webkitTransitionEnd', function () {
+      settings.callback({onTop: $front.hasClass('on-top') ? 'front' : 'back'})
+    }, false );
+
+    $flipper
+      .bind('enable', function () {
+        $target.bind('click', clickHandler);
+      })
+      .bind('disable', function () {
+        $target.unbind('click', clickHandler);
+      })
+      .bind('flip', function () {
+        $target.trigger('click');
+      });
 
     $front.addClass('on-top');
     $back.addClass('on-bottom');
-
-    $target.toggle(function () {
-      $flipper.css({
-        '-webkit-transform': transformation
-      });
-      toggleTopBottomClass();
-      return false;
-    }, function () {
-      $flipper.css({
-        '-webkit-transform': ''
-      });
-      toggleTopBottomClass();
-      return false;
-    });
 
     $front.css({
       'position': 'absolute',
@@ -64,6 +61,19 @@
       '-webkit-backface-visibility': 'hidden',
       '-webkit-transform': transformation
     });
+
+    var clickHandler = function () {
+      $flipper.css({
+        '-webkit-transform': $flipper.find('.on-top').hasClass('front') ? transformation : ''
+      });
+      toggleTopBottomClass();
+    }
+
+    $target.click(clickHandler)
+
+    function disable () {
+      $target.unbind('click');
+    };
 
     function toggleTopBottomClass () {
       $front.toggleClass('on-top on-bottom');
